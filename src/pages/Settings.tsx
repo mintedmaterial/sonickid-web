@@ -1,19 +1,18 @@
-import { 
-  Box, 
-  Heading, 
-  Card, 
-  CardBody, 
+import {
+  Box,
+  Heading,
+  Card,
+  CardBody,
   Stack,
   FormControl,
   FormLabel,
   Input,
   Switch,
   Button,
-  Divider,
   Text,
   VStack,
-  HStack
-} from '@chakra-ui/react'
+  HStack,
+} from "@chakra-ui/react"
 
 export default function Settings() {
   return (
@@ -81,3 +80,5 @@ export default function Settings() {
     </Box>
   )
 }
+
+
