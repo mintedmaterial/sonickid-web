@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
@@ -16,7 +16,6 @@
     "@thirdweb-dev/react": "^4.4.0",
     "@thirdweb-dev/chains": "^0.1.75",
     "@thirdweb-dev/sdk": "^4.0.38",
-    "thirdweb": "^5",
     "framer-motion": "^10.18.0",
     "graphql": "^16.8.0",
     "graphql-ws": "^5.14.0",
@@ -39,5 +38,7 @@
     "vite": "^5.0.0"
   }
 }
+
+
 
 
