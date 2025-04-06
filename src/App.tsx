@@ -7,7 +7,7 @@ import { client as graphqlClient } from "./utils/subgraph"
 import { WebApp, isTelegramWebApp } from "./utils/telegram"
 import { ChakraProvider } from "@chakra-ui/react"
 import theme from "./theme"
-import Router from "./Router"
+import Router from "./router"
 
 export default function App() {
   useEffect(() => {
@@ -28,5 +28,4 @@ export default function App() {
     </ChakraProvider>
   )
 }
-
 
