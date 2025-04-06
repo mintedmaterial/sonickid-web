@@ -1,67 +1,78 @@
-import { createClient, defaultExchanges, subscriptionExchange } from 'urql';
-import { createClient as createWSClient } from 'graphql-ws';
+import { createClient, defaultExchanges, subscriptionExchange } from "urql"
+import { createClient as createWSClient } from "graphql-ws"
 
 // Types for subgraph responses
 export interface Token {
-  id: string;
-  symbol: string;
-  name: string;
-  decimals: number;
-  totalSupply: string;
-  volume: string;
-  volumeUSD: string;
-  txCount: string;
-  liquidity: string;
-  derivedETH: string;
+  id: string
+  symbol: string
+  name: string
+  decimals: number
+  totalSupply: string
+  volume: string
+  volumeUSD: string
+  txCount: string
+  liquidity: string
+  derivedETH: string
 }
 
 export interface Pair {
-  id: string;
-  token0: Token;
-  token1: Token;
-  reserve0: string;
-  reserve1: string;
-  reserveUSD: string;
-  volumeUSD: string;
-  txCount: string;
+  id: string
+  token0: Token
+  token1: Token
+  reserve0: string
+  reserve1: string
+  reserveUSD: string
+  volumeUSD: string
+  txCount: string
 }
 
 export interface PairDayData {
-  id: string;
-  date: number;
-  pairAddress: string;
-  token0: Token;
-  token1: Token;
-  reserve0: string;
-  reserve1: string;
-  reserveUSD: string;
-  volumeToken0: string;
-  volumeToken1: string;
-  volumeUSD: string;
-  txCount: string;
+  id: string
+  date: number
+  pairAddress: string
+  token0: Token
+  token1: Token
+  reserve0: string
+  reserve1: string
+  reserveUSD: string
+  volumeToken0: string
+  volumeToken1: string
+  volumeUSD: string
+  txCount: string
 }
 
+// Create a default endpoint if environment variables are not available
+const defaultEndpoint = "https://api.studio.thegraph.com/query/your-id/sonic-blockchain/version"
+
 // WebSocket client for subscriptions
-const wsClient = createWSClient({
-  url: import.meta.env.VITE_SUBGRAPH_WS_ENDPOINT || 
-       import.meta.env.VITE_SUBGRAPH_ENDPOINT?.replace('http', 'ws') || 
-       'wss://api.studio.thegraph.com/query/your-id/sonic-blockchain/version',
-});
+const wsClient =
+  typeof window !== "undefined"
+    ? createWSClient({
+        url:
+          import.meta.env.VITE_SUBGRAPH_WS_ENDPOINT ||
+          import.meta.env.VITE_SUBGRAPH_ENDPOINT?.replace("http", "ws") ||
+          defaultEndpoint.replace("http", "ws"),
+      })
+    : null
 
 // Create GraphQL client with subscriptions support
 export const client = createClient({
-  url: import.meta.env.VITE_SUBGRAPH_ENDPOINT || 'https://api.studio.thegraph.com/query/your-id/sonic-blockchain/version',
+  url: import.meta.env.VITE_SUBGRAPH_ENDPOINT || defaultEndpoint,
   exchanges: [
     ...defaultExchanges,
-    subscriptionExchange({
-      forwardSubscription: (operation) => ({
-        subscribe: (sink) => ({
-          unsubscribe: wsClient.subscribe(operation, sink),
-        }),
-      }),
-    }),
+    ...(wsClient
+      ? [
+          subscriptionExchange({
+            forwardSubscription: (operation) => ({
+              subscribe: (sink) => ({
+                unsubscribe: wsClient.subscribe(operation, sink),
+              }),
+            }),
+          }),
+        ]
+      : []),
   ],
-});
+})
 
 // Common GraphQL queries
 export const TOKENS_QUERY = `
@@ -79,7 +90,7 @@ export const TOKENS_QUERY = `
       derivedETH
     }
   }
-`;
+`
 
 export const PAIRS_QUERY = `
   query GetPairs($first: Int = 100, $orderBy: String = "reserveUSD", $orderDirection: String = "desc") {
@@ -102,7 +113,7 @@ export const PAIRS_QUERY = `
       txCount
     }
   }
-`;
+`
 
 export const TOKEN_DAY_DATA_QUERY = `
   query GetTokenDayData($tokenId: String!, $days: Int = 7) {
@@ -120,23 +131,23 @@ export const TOKEN_DAY_DATA_QUERY = `
       txCount
     }
   }
-`;
+`
 
 // Helper functions for common data fetching patterns
-export const fetchTopTokens = async (count: number = 100) => {
-  const { data } = await client.query(TOKENS_QUERY, { first: count }).toPromise();
-  return data?.tokens || [];
-};
+export const fetchTopTokens = async (count = 100) => {
+  const { data } = await client.query(TOKENS_QUERY, { first: count }).toPromise()
+  return data?.tokens || []
+}
 
-export const fetchTopPairs = async (count: number = 100) => {
-  const { data } = await client.query(PAIRS_QUERY, { first: count }).toPromise();
-  return data?.pairs || [];
-};
+export const fetchTopPairs = async (count = 100) => {
+  const { data } = await client.query(PAIRS_QUERY, { first: count }).toPromise()
+  return data?.pairs || []
+}
 
-export const fetchTokenHistory = async (tokenId: string, days: number = 7) => {
-  const { data } = await client.query(TOKEN_DAY_DATA_QUERY, { tokenId, days }).toPromise();
-  return data?.tokenDayDatas || [];
-};
+export const fetchTokenHistory = async (tokenId: string, days = 7) => {
+  const { data } = await client.query(TOKEN_DAY_DATA_QUERY, { tokenId, days }).toPromise()
+  return data?.tokenDayDatas || []
+}
 
 // Hook for real-time data subscription
 export const useTokenData = (tokenId: string) => {
@@ -150,7 +161,8 @@ export const useTokenData = (tokenId: string) => {
         txCount
       }
     }
-  `;
+  `
 
-  return client.subscription(TOKEN_SUBSCRIPTION, { id: tokenId });
-};
+  return client.subscription(TOKEN_SUBSCRIPTION, { id: tokenId })
+}
+
