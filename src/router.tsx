@@ -10,7 +10,7 @@ import Social from "./pages/Social"
 import Analytics from "./pages/Analytics"
 import Settings from "./pages/Settings"
 
-// Inline MainLayout to avoid import issues
+// Inline MainLayout since the import is failing
 function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <Flex minH="100vh">
@@ -39,4 +39,6 @@ export default function Router() {
     </MainLayout>
   )
 }
+
+
 
