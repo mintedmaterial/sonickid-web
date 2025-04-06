@@ -1,11 +1,7 @@
-import { createThirdwebClient, sepolia } from "thirdweb"
-
-// Initialize the ThirdWeb client with configuration
-export const client = createThirdwebClient({
+// Simplified client without ThirdWeb dependencies for now
+export const client = {
   clientId: import.meta.env.VITE_THIRDWEB_CLIENT_ID || "",
-  supportedChains: [sepolia],
-  activeChain: sepolia,
-  secretKey: import.meta.env.VITE_THIRDWEB_SECRET_KEY || "",
+  activeChain: { id: 11155111, name: "Sepolia" }, // Sepolia chain ID
 
   // Configure Telegram Mini App metadata
   appMetadata: {
@@ -14,5 +10,5 @@ export const client = createThirdwebClient({
     isDarkMode: true,
     supportedWallets: ["metamask", "coinbase", "walletconnect"],
   },
-})
+}
 
