@@ -24,7 +24,7 @@ export default function Header() {
             icon={colorMode === 'light' ? <FiMoon /> : <FiSun />}
             onClick={toggleColorMode}
           />
-          <ConnectWallet />
+          <ConnectButton />
         </Flex>
       </Flex>
     </Box>
