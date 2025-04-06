@@ -2,12 +2,11 @@
 
 import { useEffect } from "react"
 import { BrowserRouter } from "react-router-dom"
-import { ThirdwebProvider } from "@thirdweb-dev/react"
-import { Sepolia } from "@thirdweb-dev/chains"
 import { Provider as UrqlProvider } from "urql"
 import { client as graphqlClient } from "./utils/subgraph"
 import { WebApp, isTelegramWebApp } from "./utils/telegram"
-import { ChakraProvider } from "./providers/ChakraProvider"
+import { ChakraProvider } from "@chakra-ui/react"
+import theme from "./theme"
 import Router from "./Router"
 
 export default function App() {
@@ -20,15 +19,14 @@ export default function App() {
   }, [])
 
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <UrqlProvider value={graphqlClient}>
-        <ThirdwebProvider activeChain={Sepolia} clientId={import.meta.env.VITE_THIRDWEB_CLIENT_ID}>
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
-        </ThirdwebProvider>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
       </UrqlProvider>
     </ChakraProvider>
   )
 }
+
 
