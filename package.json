@@ -13,6 +13,9 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@thirdweb-dev/react": "^4.4.0",
+    "@thirdweb-dev/chains": "^0.1.75",
+    "@thirdweb-dev/sdk": "^4.0.38",
     "thirdweb": "^5",
     "framer-motion": "^10.18.0",
     "graphql": "^16.8.0",
@@ -36,4 +39,5 @@
     "vite": "^5.0.0"
   }
 }
+
 
