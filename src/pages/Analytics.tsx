@@ -1,17 +1,16 @@
-import { 
-  Box, 
-  Heading, 
-  SimpleGrid, 
-  Card, 
-  CardBody, 
-  Text, 
+import {
+  Box,
+  Heading,
+  SimpleGrid,
+  Card,
+  CardBody,
+  Text,
   Stat,
   StatLabel,
   StatNumber,
   StatHelpText,
   StatArrow,
-  Stack
-} from '@chakra-ui/react'
+} from "@chakra-ui/react"
 
 export default function Analytics() {
   return (
@@ -74,14 +73,18 @@ export default function Analytics() {
       <SimpleGrid columns={{ base: 1, lg: 2 }} gap={6}>
         <Card>
           <CardBody>
-            <Heading size="md" mb={4}>Trading Performance</Heading>
+            <Heading size="md" mb={4}>
+              Trading Performance
+            </Heading>
             <Text color="gray.500">Chart will be implemented here</Text>
           </CardBody>
         </Card>
 
         <Card>
           <CardBody>
-            <Heading size="md" mb={4}>User Activity</Heading>
+            <Heading size="md" mb={4}>
+              User Activity
+            </Heading>
             <Text color="gray.500">Chart will be implemented here</Text>
           </CardBody>
         </Card>
@@ -89,3 +92,4 @@ export default function Analytics() {
     </Box>
   )
 }
+
