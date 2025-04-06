@@ -1,5 +1,6 @@
 import { Box, Flex, IconButton, useColorMode, Text } from '@chakra-ui/react'
 import { ConnectWallet } from '@thirdweb-dev/react'
+import { FiSun, FiMoon } from 'react-icons/fi'
 
 export default function Header() {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -20,7 +21,7 @@ export default function Header() {
         <Flex gap={4} align="center">
           <IconButton
             aria-label="Toggle color mode"
-            icon={colorMode === 'light' ? '🌙' : '☀️'}
+            icon={colorMode === 'light' ? <FiMoon /> : <FiSun />}
             onClick={toggleColorMode}
           />
           <ConnectWallet />
@@ -29,3 +30,4 @@ export default function Header() {
     </Box>
   )
 }
+
