@@ -1,12 +1,12 @@
-import { createThirdwebClient, sepolia } from "thirdweb";
+import { createThirdwebClient, sepolia } from "thirdweb"
 
 // Initialize the ThirdWeb client with configuration
 export const client = createThirdwebClient({
-  clientId: import.meta.env.VITE_THIRDWEB_CLIENT_ID,
+  clientId: import.meta.env.VITE_THIRDWEB_CLIENT_ID || "",
   supportedChains: [sepolia],
   activeChain: sepolia,
-  secretKey: import.meta.env.VITE_THIRDWEB_SECRET_KEY,
-  
+  secretKey: import.meta.env.VITE_THIRDWEB_SECRET_KEY || "",
+
   // Configure Telegram Mini App metadata
   appMetadata: {
     name: "SonicKid Dashboard",
@@ -14,4 +14,5 @@ export const client = createThirdwebClient({
     isDarkMode: true,
     supportedWallets: ["metamask", "coinbase", "walletconnect"],
   },
-});
+})
+
