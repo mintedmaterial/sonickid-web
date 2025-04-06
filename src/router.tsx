@@ -10,7 +10,7 @@ import Social from "./pages/Social"
 import Analytics from "./pages/Analytics"
 import Settings from "./pages/Settings"
 
-// Inline MainLayout since the import is failing
+// Inline MainLayout component
 function MainLayout({ children }: { children: React.ReactNode }) {
   return (
     <Flex minH="100vh">
