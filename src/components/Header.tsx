@@ -1,7 +1,6 @@
 "use client"
 
-import { Box, Flex, IconButton, useColorMode, Text } from "@chakra-ui/react"
-import { ConnectWallet } from "@thirdweb-dev/react"
+import { Box, Flex, IconButton, useColorMode, Text, Button } from "@chakra-ui/react"
 import { FiSun, FiMoon } from "react-icons/fi"
 
 export default function Header() {
@@ -26,12 +25,15 @@ export default function Header() {
             icon={colorMode === "light" ? <FiMoon /> : <FiSun />}
             onClick={toggleColorMode}
           />
-          <ConnectWallet />
+          {/* Temporarily replace ConnectWallet with a button until ThirdWeb is properly set up */}
+          <Button>Connect Wallet</Button>
         </Flex>
       </Flex>
     </Box>
   )
 }
+
+
 
 
 
