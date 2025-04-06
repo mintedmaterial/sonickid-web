@@ -1,13 +1,13 @@
-import { Box, VStack, Link, Text, Icon, useColorMode } from '@chakra-ui/react'
-import { Link as RouterLink } from 'react-router-dom'
+import { Box, VStack, Link, Text, useColorMode } from "@chakra-ui/react"
+import { Link as RouterLink } from "react-router-dom"
 
 const NAV_ITEMS = [
-  { label: 'Dashboard', path: '/', icon: '📊' },
-  { label: 'NFTs', path: '/nfts', icon: '🖼️' },
-  { label: 'Trading', path: '/trading', icon: '📈' },
-  { label: 'Social', path: '/social', icon: '💬' },
-  { label: 'Analytics', path: '/analytics', icon: '📉' },
-  { label: 'Settings', path: '/settings', icon: '⚙️' },
+  { label: "Dashboard", path: "/", icon: "📊" },
+  { label: "NFTs", path: "/nfts", icon: "🖼️" },
+  { label: "Trading", path: "/trading", icon: "📈" },
+  { label: "Social", path: "/social", icon: "💬" },
+  { label: "Analytics", path: "/analytics", icon: "📉" },
+  { label: "Settings", path: "/settings", icon: "⚙️" },
 ]
 
 export default function Sidebar() {
@@ -20,7 +20,7 @@ export default function Sidebar() {
       w="240px"
       borderRight="1px"
       borderColor="gray.200"
-      bg={colorMode === 'light' ? 'white' : 'gray.800'}
+      bg={colorMode === "light" ? "white" : "gray.800"}
       py={8}
       position="sticky"
       top={0}
@@ -36,7 +36,7 @@ export default function Sidebar() {
             display="flex"
             alignItems="center"
             _hover={{
-              bg: colorMode === 'light' ? 'gray.100' : 'gray.700',
+              bg: colorMode === "light" ? "gray.100" : "gray.700",
             }}
           >
             <Text fontSize="lg" mr={3}>
@@ -49,3 +49,5 @@ export default function Sidebar() {
     </Box>
   )
 }
+
+
