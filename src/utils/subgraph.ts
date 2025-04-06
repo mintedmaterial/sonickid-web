@@ -1,4 +1,4 @@
-import { createClient, defaultExchanges } from "urql"
+import { createClient } from "urql"
 
 // Types for subgraph responses
 export interface Token {
@@ -43,10 +43,9 @@ export interface PairDayData {
 // Create a default endpoint if environment variables are not available
 const defaultEndpoint = "https://subgraph.satsuma-prod.com/496ce6650bfa/colts-team--432938/sonic-blockchain-subgraph/version/v0.0.1-new-version/api"
 
-// Create GraphQL client
+// Create GraphQL client with basic configuration
 export const client = createClient({
   url: import.meta.env.VITE_SUBGRAPH_ENDPOINT || defaultEndpoint,
-  exchanges: defaultExchanges,
 })
 
 // Common GraphQL queries
@@ -124,7 +123,7 @@ export const fetchTokenHistory = async (tokenId: string, days = 7) => {
   return data?.tokenDayDatas || []
 }
 
-// Simplified token data hook that actually uses the tokenId parameter
+// Simplified token data hook that uses the tokenId parameter
 export const useTokenData = (tokenId: string) => {
   // Using the tokenId parameter to avoid the unused variable warning
   console.log(`Fetching data for token: ${tokenId}`)
